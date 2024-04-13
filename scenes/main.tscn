@@ -9,6 +9,13 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Altar" parent="." instance=ExtResource("1_3ks14")]
+position = Vector2(-159, 67)
+
+[node name="Altar3" parent="." instance=ExtResource("1_3ks14")]
+position = Vector2(-82, -67)
+
+[node name="Altar2" parent="." instance=ExtResource("1_3ks14")]
+position = Vector2(118, -19)
 
 [node name="Necromancer" parent="." instance=ExtResource("1_udj25")]
 position = Vector2(-110, 119)
@@ -16,3 +23,12 @@ position = Vector2(-110, 119)
 [node name="Peasant" parent="." instance=ExtResource("3_xgidf")]
 position = Vector2(-340, -90)
 velocity = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="Peasant2" parent="." instance=ExtResource("3_xgidf")]
+position = Vector2(286, -144)
+
+[node name="Peasant3" parent="." instance=ExtResource("3_xgidf")]
+position = Vector2(-485, 263)
+
+[node name="Peasant4" parent="." instance=ExtResource("3_xgidf")]
+position = Vector2(277, 276)

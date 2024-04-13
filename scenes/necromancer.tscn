@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnpf13fmlyanh"]
+
+[ext_resource type="Script" path="res://scripts/necromancer.gd" id="1_4h2x4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rs0lh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_42ry1"]
+radius = 10.0
+height = 20.0
+
+[node name="Necromancer" type="Area2D"]
+position = Vector2(-51, 21)
+script = ExtResource("1_4h2x4")
+acceleration = 100.0
+speed = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rs0lh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("CapsuleMesh_42ry1")

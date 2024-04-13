@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Unit
 class_name Archer
 
 @export var acceleration = 200.0
@@ -7,6 +7,7 @@ class_name Archer
 @export var arrow_scene: PackedScene
 @export var reload_duration = 1.0
 
+var velocity = Vector2.ZERO
 var fire_time = 0.0
 
 func _physics_process(delta):
@@ -30,4 +31,4 @@ func _physics_process(delta):
             get_parent().add_child(arrow)
 
     velocity = velocity.move_toward(speed * move_direction, acceleration * delta)
-    move_and_slide()
+    position += velocity * delta

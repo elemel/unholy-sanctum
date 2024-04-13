@@ -1,57 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=4 format=3 uid="uid://dv6v6kt221hpn"]
 
-[ext_resource type="Script" path="res://scripts/necromancer.gd" id="1_jo5mm"]
-[ext_resource type="Script" path="res://scripts/archer.gd" id="2_0ypv3"]
-[ext_resource type="PackedScene" uid="uid://c8yctccb05y7b" path="res://scenes/arrow.tscn" id="3_6xk7x"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jgrbc"]
-radius = 20.0
-height = 40.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vlbqr"]
-radius = 20.0
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_rs0lh"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_42ry1"]
-radius = 10.0
-height = 20.0
+[ext_resource type="PackedScene" uid="uid://noltwi3xdib7" path="res://scenes/altar.tscn" id="1_3ks14"]
+[ext_resource type="PackedScene" uid="uid://bnpf13fmlyanh" path="res://scenes/necromancer.tscn" id="1_udj25"]
+[ext_resource type="PackedScene" uid="uid://rwaionureu0f" path="res://scenes/archer.tscn" id="3_xgidf"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Altar" type="StaticBody2D" parent="."]
+[node name="Altar" parent="." instance=ExtResource("1_3ks14")]
 
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Altar"]
-mesh = SubResource("CapsuleMesh_jgrbc")
+[node name="Necromancer" parent="." instance=ExtResource("1_udj25")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Altar"]
-shape = SubResource("CircleShape2D_vlbqr")
-
-[node name="Necromancer" type="CharacterBody2D" parent="."]
-position = Vector2(-51, 21)
-motion_mode = 1
-script = ExtResource("1_jo5mm")
-acceleration = 100.0
-speed = 50.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Necromancer"]
-shape = SubResource("CircleShape2D_rs0lh")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Necromancer"]
-mesh = SubResource("CapsuleMesh_42ry1")
-
-[node name="Archer" type="CharacterBody2D" parent="."]
-position = Vector2(-234, -99)
-motion_mode = 1
-script = ExtResource("2_0ypv3")
-acceleration = 100.0
-speed = 50.0
-arrow_scene = ExtResource("3_6xk7x")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Archer"]
-shape = SubResource("CircleShape2D_rs0lh")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Archer"]
-mesh = SubResource("CapsuleMesh_42ry1")
+[node name="Archer" parent="." instance=ExtResource("3_xgidf")]

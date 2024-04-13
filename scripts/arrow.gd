@@ -1,4 +1,4 @@
-extends Area2D
+extends Unit
 class_name Arrow
 
 @export var speed = 100.0

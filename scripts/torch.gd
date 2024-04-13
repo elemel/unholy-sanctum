@@ -15,11 +15,14 @@ var acceleration_z = 50.0
 var thrower: Node2D
 
 @onready var sprite = $"Sprite2D"
+@onready var shadow_sprite = $"Shadow/Sprite2D"
 
 func _ready():
     creation_time = 0.001 * Time.get_ticks_msec()
     body_entered.connect(_on_body_entered)
+
     sprite.position.y = z
+    shadow_sprite.position.y = z
 
 func _physics_process(delta: float) -> void:
     var now = 0.001 * Time.get_ticks_msec()
@@ -36,9 +39,15 @@ func _physics_process(delta: float) -> void:
         return
 
     var direction = -1.0 if velocity.x < 0.0 else 1.0
+    var sprite_rotation = ((now - creation_time) * rotation_speed + deg_to_rad(rotation_phase_degrees)) * direction
     position += velocity * delta
+
     sprite.position.y = z
-    sprite.rotation = ((now - creation_time) * rotation_speed + deg_to_rad(rotation_phase_degrees)) * direction
+    sprite.rotation = sprite_rotation
+
+    shadow_sprite.position.y = z
+    shadow_sprite.rotation = sprite_rotation
+
     z_index = int(position.y)
 
 func _on_body_entered(body: Node2D):

@@ -16,6 +16,15 @@ torch_scene = ExtResource("2_2d8cv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bmshn")
 
+[node name="Shadow" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 0.498039)
+skew = 1.0472
+
+[node name="Sprite2D" type="Sprite2D" parent="Shadow"]
+texture_filter = 3
+position = Vector2(0, -22)
+texture = ExtResource("3_gs6qv")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 3
 position = Vector2(0, -22)

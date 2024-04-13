@@ -10,6 +10,7 @@ class_name Peasant
 var fire_time = 0.0
 
 @onready var sprite = $"Sprite2D"
+@onready var shadow_sprite = $"Shadow/Sprite2D"
 
 func _physics_process(delta):
     var move_direction = Vector2.ZERO
@@ -34,10 +35,12 @@ func _physics_process(delta):
 
                 get_parent().add_child(torch)
 
-        if move_direction.x < -0.5:
+        if target_direction.x < 0.0:
             sprite.scale.x = -1
-        elif move_direction.x > 0.5:
+            shadow_sprite.scale.x = -1
+        else:
             sprite.scale.x = 1
+            shadow_sprite.scale.x = 1
 
     velocity = velocity.move_toward(speed * move_direction, acceleration * delta)
     move_and_slide()

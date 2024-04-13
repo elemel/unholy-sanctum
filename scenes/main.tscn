@@ -6,8 +6,6 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-
 [node name="Altar" parent="." instance=ExtResource("1_3ks14")]
 position = Vector2(-159, 67)
 
@@ -19,6 +17,8 @@ position = Vector2(118, -19)
 
 [node name="Necromancer" parent="." instance=ExtResource("1_udj25")]
 position = Vector2(-110, 119)
+
+[node name="Camera2D" type="Camera2D" parent="Necromancer"]
 
 [node name="Peasant" parent="." instance=ExtResource("3_xgidf")]
 position = Vector2(-340, -90)

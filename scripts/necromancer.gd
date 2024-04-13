@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Necromancer
 
 @export var acceleration = 200.0
 @export var speed = 100.0

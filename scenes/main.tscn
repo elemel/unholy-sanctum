@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=8 format=3 uid="uid://dv6v6kt221hpn"]
 
 [ext_resource type="Script" path="res://scripts/necromancer.gd" id="1_jo5mm"]
 [ext_resource type="Script" path="res://scripts/archer.gd" id="2_0ypv3"]
+[ext_resource type="PackedScene" uid="uid://c8yctccb05y7b" path="res://scenes/arrow.tscn" id="3_6xk7x"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jgrbc"]
 radius = 20.0
@@ -30,6 +31,7 @@ shape = SubResource("CircleShape2D_vlbqr")
 
 [node name="Necromancer" type="CharacterBody2D" parent="."]
 position = Vector2(-51, 21)
+motion_mode = 1
 script = ExtResource("1_jo5mm")
 acceleration = 100.0
 speed = 50.0
@@ -42,9 +44,11 @@ mesh = SubResource("CapsuleMesh_42ry1")
 
 [node name="Archer" type="CharacterBody2D" parent="."]
 position = Vector2(-234, -99)
+motion_mode = 1
 script = ExtResource("2_0ypv3")
 acceleration = 100.0
 speed = 50.0
+arrow_scene = ExtResource("3_6xk7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Archer"]
 shape = SubResource("CircleShape2D_rs0lh")

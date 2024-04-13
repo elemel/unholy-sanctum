@@ -8,11 +8,12 @@ class_name Peasant
 @export var reload_duration = 1.0
 
 var fire_time = 0.0
+var face_direction = 1
 
 @onready var sprite = $"Sprite2D"
 @onready var shadow_sprite = $"Shadow/Sprite2D"
 
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
     var move_direction = Vector2.ZERO
     var target = find_target()
 
@@ -36,17 +37,20 @@ func _physics_process(delta):
                 get_parent().add_child(torch)
 
         if target_direction.x < 0.0:
-            sprite.scale.x = -1
-            shadow_sprite.scale.x = -1
-        else:
-            sprite.scale.x = 1
-            shadow_sprite.scale.x = 1
+            face_direction = -1
+        elif target_direction.x > 0.0:
+            face_direction = 1
 
     velocity = velocity.move_toward(speed * move_direction, acceleration * delta)
     move_and_slide()
+
+func _process(_delta: float) -> void:
+    sprite.scale.x = float(face_direction)
+    shadow_sprite.scale.x = float(face_direction)
+
     z_index = int(position.y)
 
-func find_target():
+func find_target() -> Node2D:
     var target = null
     var min_distance = INF
 

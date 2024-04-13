@@ -38,9 +38,13 @@ func _physics_process(delta: float) -> void:
         queue_free()
         return
 
+    position += velocity * delta
+
+func _process(_delta: float) -> void:
+    var now = 0.001 * Time.get_ticks_msec()
+
     var direction = -1.0 if velocity.x < 0.0 else 1.0
     var sprite_rotation = ((now - creation_time) * rotation_speed + deg_to_rad(rotation_phase_degrees)) * direction
-    position += velocity * delta
 
     sprite.position.y = z
     sprite.rotation = sprite_rotation
@@ -50,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
     z_index = int(position.y)
 
-func _on_body_entered(body: Node2D):
+func _on_body_entered(body: Node2D) -> void:
     if body != thrower:
         if body.has_method("receive_damage"):
             body.receive_damage(damage)

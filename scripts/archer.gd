@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Archer
+class_name Peasant
 
 @export var acceleration = 200.0
 @export var speed = 100.0
@@ -31,3 +31,5 @@ func _physics_process(delta):
 
     velocity = velocity.move_toward(speed * move_direction, acceleration * delta)
     move_and_slide()
+
+    z_index = int(position.y)

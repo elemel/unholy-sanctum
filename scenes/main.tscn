@@ -11,5 +11,8 @@
 [node name="Altar" parent="." instance=ExtResource("1_3ks14")]
 
 [node name="Necromancer" parent="." instance=ExtResource("1_udj25")]
+position = Vector2(-110, 119)
 
 [node name="Archer" parent="." instance=ExtResource("3_xgidf")]
+position = Vector2(-340, -90)
+velocity = Vector2(2.08165e-12, 2.08165e-12)

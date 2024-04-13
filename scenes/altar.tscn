@@ -1,16 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://noltwi3xdib7"]
+[gd_scene load_steps=4 format=3 uid="uid://noltwi3xdib7"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_jgrbc"]
-radius = 20.0
-height = 40.0
+[ext_resource type="Script" path="res://scripts/altar.gd" id="1_2237s"]
+[ext_resource type="Texture2D" uid="uid://cx13ehy4jmj2p" path="res://images/altar.png" id="1_wawyv"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_vlbqr"]
-radius = 20.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8g1xx"]
+size = Vector2(56, 16)
 
 [node name="Altar" type="StaticBody2D"]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
-mesh = SubResource("CapsuleMesh_jgrbc")
+script = ExtResource("1_2237s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_vlbqr")
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_8g1xx")
+
+[node name="Altar" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(1, -37)
+texture = ExtResource("1_wawyv")

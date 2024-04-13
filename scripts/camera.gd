@@ -1,7 +1,7 @@
 extends Camera2D
 class_name Camera
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
     var target = find_target()
 
     if target != null:

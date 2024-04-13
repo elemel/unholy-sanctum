@@ -12,6 +12,7 @@ motion_mode = 1
 script = ExtResource("1_aob7w")
 fire_range = 150.0
 torch_scene = ExtResource("2_2d8cv")
+reload_duration = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_bmshn")

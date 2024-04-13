@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=5 format=3 uid="uid://dv6v6kt221hpn"]
 
 [ext_resource type="PackedScene" uid="uid://noltwi3xdib7" path="res://scenes/altar.tscn" id="1_3ks14"]
 [ext_resource type="PackedScene" uid="uid://bnpf13fmlyanh" path="res://scenes/necromancer.tscn" id="1_udj25"]
 [ext_resource type="PackedScene" uid="uid://rwaionureu0f" path="res://scenes/peasant.tscn" id="3_xgidf"]
+[ext_resource type="Script" path="res://scripts/camera.gd" id="4_cnesv"]
 
 [node name="Main" type="Node2D"]
 
@@ -18,8 +19,6 @@ position = Vector2(118, -19)
 [node name="Necromancer" parent="." instance=ExtResource("1_udj25")]
 position = Vector2(-110, 119)
 
-[node name="Camera2D" type="Camera2D" parent="Necromancer"]
-
 [node name="Peasant" parent="." instance=ExtResource("3_xgidf")]
 position = Vector2(-340, -90)
 velocity = Vector2(2.08165e-12, 2.08165e-12)
@@ -32,3 +31,7 @@ position = Vector2(-485, 263)
 
 [node name="Peasant4" parent="." instance=ExtResource("3_xgidf")]
 position = Vector2(277, 276)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-110, 119)
+script = ExtResource("4_cnesv")

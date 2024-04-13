@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://noltwi3xdib7"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jgrbc"]
+radius = 20.0
+height = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlbqr"]
+radius = 20.0
+
+[node name="Altar" type="StaticBody2D"]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+mesh = SubResource("CapsuleMesh_jgrbc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vlbqr")

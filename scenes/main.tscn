@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dv6v6kt221hpn"]
+
+[ext_resource type="Script" path="res://scripts/necromancer.gd" id="1_jo5mm"]
+[ext_resource type="Script" path="res://scripts/archer.gd" id="2_0ypv3"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_jgrbc"]
+radius = 20.0
+height = 40.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vlbqr"]
+radius = 20.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rs0lh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_42ry1"]
+radius = 10.0
+height = 20.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Altar" type="StaticBody2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Altar"]
+mesh = SubResource("CapsuleMesh_jgrbc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Altar"]
+shape = SubResource("CircleShape2D_vlbqr")
+
+[node name="Necromancer" type="CharacterBody2D" parent="."]
+position = Vector2(-51, 21)
+script = ExtResource("1_jo5mm")
+acceleration = 100.0
+speed = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Necromancer"]
+shape = SubResource("CircleShape2D_rs0lh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Necromancer"]
+mesh = SubResource("CapsuleMesh_42ry1")
+
+[node name="Archer" type="CharacterBody2D" parent="."]
+position = Vector2(-234, -99)
+script = ExtResource("2_0ypv3")
+acceleration = 100.0
+speed = 50.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Archer"]
+shape = SubResource("CircleShape2D_rs0lh")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Archer"]
+mesh = SubResource("CapsuleMesh_42ry1")

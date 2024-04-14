@@ -11,8 +11,9 @@ class_name Peasant
 var fire_time = 0.0
 var face_direction = 1
 
-@onready var sprite = $"Sprite2D"
-@onready var shadow_sprite = $"Shadow/Sprite2D"
+@onready var sprite = get_node("Sprite2D")
+@onready var shadow_sprite = get_node("Shadow/Sprite2D")
+@onready var attack_sound = get_node("AttackSound")
 
 func _physics_process(delta: float) -> void:
     var move_direction = Vector2.ZERO
@@ -28,6 +29,7 @@ func _physics_process(delta: float) -> void:
             var now = 0.001 * Time.get_ticks_msec()
 
             if torch_scene != null and now > fire_time + reload_duration:
+                attack_sound.play()
                 fire_time = now
 
                 var torch: Torch = torch_scene.instantiate()

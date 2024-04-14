@@ -5,7 +5,8 @@ class_name Torch
 @export var life_duration = 3.0
 @export var rotation_speed = 5.0
 @export var rotation_phase_degrees = -45.0
-@export var damage = 20.0
+@export var min_damage = 10.0
+@export var max_damage = 20.0
 @export var unit_radius = 5.0
 
 var creation_time = 0.0
@@ -58,6 +59,7 @@ func _process(_delta: float) -> void:
 func _on_body_entered(body: Node2D) -> void:
     if body != thrower:
         if body.has_method("receive_damage"):
+            var damage = randf_range(min_damage, max_damage)
             body.receive_damage(damage)
             queue_free()
             return

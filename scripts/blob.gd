@@ -6,6 +6,10 @@ class_name Blob
 @export var attack_range = 20.0
 @export var attack_cooldown = 1.0
 @export var unit_radius = 15.0
+@export var max_health = 50.0
+@export var current_health = 50.0
+@export var min_damage = 10.0
+@export var max_damage = 20.0
 
 var attack_time = 0.0
 var face_direction = 1
@@ -14,6 +18,10 @@ var face_direction = 1
 @onready var shadow_sprite = $"Shadow/Sprite2D"
 
 func _physics_process(delta: float) -> void:
+    if current_health < 0.0:
+        queue_free()
+        return
+
     var move_direction = Vector2.ZERO
     var target = find_target()
 
@@ -28,6 +36,10 @@ func _physics_process(delta: float) -> void:
 
             if now > attack_time + attack_cooldown:
                 attack_time = now
+
+                if target.has_method("receive_damage"):
+                    var damage = randf_range(min_damage, max_damage)
+                    target.receive_damage(damage)
 
         if target_direction.x < 0.0:
             face_direction = -1
@@ -56,3 +68,6 @@ func find_target() -> Node2D:
                 target = node
 
     return target
+
+func receive_damage(damage: float) -> void:
+    current_health -= damage

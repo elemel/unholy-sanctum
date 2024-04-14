@@ -5,6 +5,7 @@ class_name Necromancer
 @export var speed = 100.0
 @export var spring_stiffness = 10.0
 @export var spring_damping = 1.0
+@export var unit_radius = 15.0
 
 @onready var sprite = $"Sprite2D"
 @onready var shadow_sprite = $"Shadow/Sprite2D"

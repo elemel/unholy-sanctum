@@ -2,10 +2,25 @@ extends Node2D
 
 @export var title_screen_file = "res://scenes/screens/title.tscn"
 @export var game_over_screen_file = "res://scenes/screens/game_over.tscn"
+@export var game_over_delay = 2.0
+
+var game_over = false
+var game_over_time = 0.0
+
+@onready var game_over_stream_player = get_node("GameOverStreamPlayer")
 
 func _physics_process(_delta: float) -> void:
-    if is_game_over():
-        switch_to_screen(game_over_screen_file)
+    var now = 0.001 * Time.get_ticks_msec()
+
+    if game_over:
+        if now > game_over_time + game_over_delay:
+            switch_to_screen(game_over_screen_file)
+    else:
+        game_over = is_game_over()
+
+        if game_over:
+            game_over_time = now
+            game_over_stream_player.play()
 
 func _input(event: InputEvent) -> void:
     if event is InputEventKey:

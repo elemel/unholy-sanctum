@@ -15,10 +15,10 @@ shape = SubResource("RectangleShape2D_8g1xx")
 
 [node name="Shadow" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 0.498039)
+scale = Vector2(1, 0.75)
 skew = 1.0472
 
 [node name="Sprite2D" type="Sprite2D" parent="Shadow"]
-texture_filter = 3
 position = Vector2(1, -37)
 texture = ExtResource("1_wawyv")
 

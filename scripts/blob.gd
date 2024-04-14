@@ -1,13 +1,12 @@
 extends CharacterBody2D
-class_name Peasant
+class_name Blob
 
 @export var acceleration = 100.0
 @export var speed = 50.0
-@export var fire_range = 100.0
-@export var torch_scene: PackedScene
-@export var reload_duration = 1.0
+@export var attack_range = 50.0
+@export var attack_cooldown = 1.0
 
-var fire_time = 0.0
+var attack_time = 0.0
 var face_direction = 1
 
 @onready var sprite = $"Sprite2D"
@@ -21,20 +20,13 @@ func _physics_process(delta: float) -> void:
         var target_distance = position.distance_to(target.position)
         var target_direction = (target.position - position).normalized()
 
-        if target_distance > fire_range:
+        if target_distance > attack_range:
             move_direction = target_direction
         else:
             var now = 0.001 * Time.get_ticks_msec()
 
-            if torch_scene != null and now > fire_time + reload_duration:
-                fire_time = now
-
-                var torch: Torch = torch_scene.instantiate()
-                torch.position = position
-                torch.velocity = torch.speed * target_direction
-                torch.thrower = self
-
-                get_parent().add_child(torch)
+            if now > attack_time + attack_cooldown:
+                attack_time = now
 
         if target_direction.x < 0.0:
             face_direction = -1
@@ -55,7 +47,7 @@ func find_target() -> Node2D:
     var min_distance = INF
 
     for unit in get_parent().get_children():
-        if unit is Altar or unit is Necromancer or unit is Blob:
+        if unit is Peasant:
             var distance = position.distance_to(unit.position)
 
             if distance < min_distance:

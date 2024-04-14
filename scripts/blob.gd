@@ -3,8 +3,9 @@ class_name Blob
 
 @export var acceleration = 100.0
 @export var speed = 50.0
-@export var attack_range = 50.0
+@export var attack_range = 20.0
 @export var attack_cooldown = 1.0
+@export var unit_radius = 15.0
 
 var attack_time = 0.0
 var face_direction = 1
@@ -17,7 +18,7 @@ func _physics_process(delta: float) -> void:
     var target = find_target()
 
     if target != null:
-        var target_distance = position.distance_to(target.position)
+        var target_distance = position.distance_to(target.position) - unit_radius - target.unit_radius
         var target_direction = (target.position - position).normalized()
 
         if target_distance > attack_range:
@@ -48,7 +49,7 @@ func find_target() -> Node2D:
 
     for unit in get_parent().get_children():
         if unit is Peasant:
-            var distance = position.distance_to(unit.position)
+            var distance = position.distance_to(unit.position) - unit_radius - unit.unit_radius
 
             if distance < min_distance:
                 min_distance = distance

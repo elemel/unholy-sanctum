@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c8yctccb05y7b" path="res://scenes/torch.tscn" id="2_2d8cv"]
 [ext_resource type="Texture2D" uid="uid://dk4fxatu0ygs3" path="res://images/peasant.png" id="3_gs6qv"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bmshn"]
-size = Vector2(18, 6)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jnff3"]
+radius = 5.0
+height = 20.0
 
 [node name="Peasant" type="CharacterBody2D"]
 motion_mode = 1
@@ -15,7 +16,8 @@ torch_scene = ExtResource("2_2d8cv")
 reload_duration = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_bmshn")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_jnff3")
 
 [node name="Shadow" type="Node2D" parent="."]
 modulate = Color(0, 0, 0, 0.498039)

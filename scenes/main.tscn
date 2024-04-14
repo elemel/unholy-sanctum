@@ -31,19 +31,19 @@ position = Vector2(-110, 119)
 script = ExtResource("4_cnesv")
 
 [node name="Blob" parent="." instance=ExtResource("5_2iqup")]
-position = Vector2(-283, -21)
+position = Vector2(281, -50)
 
 [node name="Blob2" parent="." instance=ExtResource("5_2iqup")]
-position = Vector2(63, 153)
+position = Vector2(214, 166)
 
 [node name="Blob3" parent="." instance=ExtResource("5_2iqup")]
 position = Vector2(193, -37)
 
 [node name="Blob4" parent="." instance=ExtResource("5_2iqup")]
-position = Vector2(254, 69)
+position = Vector2(315, 56)
 
 [node name="Blob5" parent="." instance=ExtResource("5_2iqup")]
-position = Vector2(-213, 207)
+position = Vector2(65, 170)
 
 [node name="Blob6" parent="." instance=ExtResource("5_2iqup")]
-position = Vector2(-76, -75)
+position = Vector2(103, -100)

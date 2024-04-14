@@ -7,15 +7,22 @@ class_name Peasant
 @export var torch_scene: PackedScene
 @export var reload_duration = 1.0
 @export var unit_radius = 10.0
+@export var max_health = 50.0
+@export var current_health = 50.0
 
 var fire_time = 0.0
 var face_direction = 1
 
-@onready var sprite = get_node("Sprite2D")
-@onready var shadow_sprite = get_node("Shadow/Sprite2D")
-@onready var attack_sound = get_node("AttackSound")
+@onready var sprite: Sprite2D = get_node("Sprite2D")
+@onready var shadow_sprite: Sprite2D = get_node("Shadow/Sprite2D")
+@onready var attack_sound: AudioStreamPlayer2D = get_node("AttackSound")
+@onready var hurt_sound: AudioStreamPlayer2D = get_node("HurtSound")
 
 func _physics_process(delta: float) -> void:
+    if current_health < 0.0:
+        queue_free()
+        return
+
     var move_direction = Vector2.ZERO
     var target = find_target()
 
@@ -66,3 +73,7 @@ func find_target() -> Node2D:
                 target = node
 
     return target
+
+func receive_damage(damage: float) -> void:
+    hurt_sound.play()
+    current_health -= damage

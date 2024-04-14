@@ -1,9 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://rwaionureu0f"]
+[gd_scene load_steps=8 format=3 uid="uid://rwaionureu0f"]
 
 [ext_resource type="Script" path="res://scripts/peasant.gd" id="1_aob7w"]
 [ext_resource type="PackedScene" uid="uid://c8yctccb05y7b" path="res://scenes/torch.tscn" id="2_2d8cv"]
 [ext_resource type="Texture2D" uid="uid://dk4fxatu0ygs3" path="res://images/peasant.png" id="3_gs6qv"]
 [ext_resource type="AudioStream" uid="uid://duxu0gsa2i3dp" path="res://sounds/torch_throw.ogg" id="4_c33w5"]
+[ext_resource type="AudioStream" uid="uid://bdj6j8ak41np3" path="res://sounds/peasant_hurt.ogg" id="5_l7t6t"]
+[ext_resource type="PackedScene" uid="uid://dhes5vods88b6" path="res://scenes/health_bar.tscn" id="6_i330n"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jnff3"]
 radius = 5.0
@@ -36,3 +38,20 @@ texture = ExtResource("3_gs6qv")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_c33w5")
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_l7t6t")
+volume_db = 10.0
+
+[node name="HealthBar" parent="." instance=ExtResource("6_i330n")]
+position = Vector2(0, 6)
+
+[node name="Background" parent="HealthBar" index="0"]
+offset_left = -10.0
+offset_right = 10.0
+
+[node name="Foreground" parent="HealthBar/Background" index="0"]
+offset_left = -10.0
+offset_right = 10.0
+
+[editable path="HealthBar"]

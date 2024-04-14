@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvy0odgmxtttf"]
+[gd_scene load_steps=5 format=3 uid="uid://bvy0odgmxtttf"]
 
 [ext_resource type="Script" path="res://scripts/blob.gd" id="1_b1c7v"]
 [ext_resource type="Texture2D" uid="uid://ctsp2hewvr5gs" path="res://images/blob.png" id="2_a6h85"]
+[ext_resource type="PackedScene" uid="uid://dhes5vods88b6" path="res://scenes/health_bar.tscn" id="3_kefp7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l0ubf"]
 radius = 5.0
@@ -27,3 +28,16 @@ texture = ExtResource("2_a6h85")
 texture_filter = 3
 position = Vector2(0, -3)
 texture = ExtResource("2_a6h85")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_kefp7")]
+position = Vector2(0, 10)
+
+[node name="Background" parent="HealthBar" index="0"]
+offset_left = -15.0
+offset_right = 15.0
+
+[node name="Foreground" parent="HealthBar/Background" index="0"]
+offset_left = -15.0
+offset_right = 15.0
+
+[editable path="HealthBar"]

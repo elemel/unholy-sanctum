@@ -10,6 +10,7 @@ class_name Necromancer
 @export var current_health = 100.0
 @export var blob_scene: PackedScene
 @export var blob_cost = 30.0
+@export var attack_range = 100.0
 
 @onready var sprite = $"Sprite2D"
 @onready var shadow_sprite = $"Shadow/Sprite2D"
@@ -42,6 +43,10 @@ func _input(event: InputEvent) -> void:
         if event.pressed:
             var game: Game = get_parent()
             var attack_position = game.get_local_mouse_position()
+            var attack_distance = position.distance_to(attack_position)
+
+            if attack_distance > attack_range:
+                attack_position = position + (attack_position - position).normalized() * attack_range
 
             var blob = blob_scene.instantiate()
             blob.position = attack_position

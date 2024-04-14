@@ -1,4 +1,5 @@
 extends Node2D
+class_name Game
 
 @export var title_screen_file = "res://scenes/screens/title.tscn"
 @export var game_over_screen_file = "res://scenes/screens/game_over.tscn"

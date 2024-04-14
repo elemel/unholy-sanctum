@@ -55,12 +55,12 @@ func find_target() -> Node2D:
     var target = null
     var min_distance = INF
 
-    for unit in get_parent().get_children():
-        if unit is Altar or unit is Necromancer or unit is Blob:
-            var distance = position.distance_to(unit.position) - unit_radius - unit.unit_radius
+    for node in get_parent().get_children():
+        if node is Altar or node is Necromancer or node is Blob:
+            var distance = position.distance_to(node.position) - unit_radius - node.unit_radius
 
             if distance < min_distance:
                 min_distance = distance
-                target = unit
+                target = node
 
     return target

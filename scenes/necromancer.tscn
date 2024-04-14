@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bnpf13fmlyanh"]
+[gd_scene load_steps=5 format=3 uid="uid://bnpf13fmlyanh"]
 
 [ext_resource type="Script" path="res://scripts/necromancer.gd" id="1_4h2x4"]
 [ext_resource type="Texture2D" uid="uid://bsne7v43oi724" path="res://images/necromancer.png" id="2_3rbu3"]
+[ext_resource type="PackedScene" uid="uid://dhes5vods88b6" path="res://scenes/health_bar.tscn" id="3_f152s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jfu7"]
 radius = 5.0
@@ -30,3 +31,16 @@ texture = ExtResource("2_3rbu3")
 texture_filter = 3
 position = Vector2(1, -25)
 texture = ExtResource("2_3rbu3")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_f152s")]
+position = Vector2(0, 9)
+
+[node name="Background" parent="HealthBar" index="0"]
+offset_left = -13.0
+offset_right = 12.0
+
+[node name="Foreground" parent="HealthBar/Background" index="0"]
+offset_left = -12.5
+offset_right = 12.5
+
+[editable path="HealthBar"]

@@ -1,13 +1,32 @@
 extends Node2D
 
 @export var title_screen_file = "res://scenes/screens/title.tscn"
+@export var game_over_screen_file = "res://scenes/screens/game_over.tscn"
+
+func _physics_process(_delta: float) -> void:
+    if is_game_over():
+        switch_to_screen(game_over_screen_file)
 
 func _input(event: InputEvent) -> void:
     if event is InputEventKey:
         if event.pressed and (event.keycode == KEY_ESCAPE or event.keycode == KEY_BACKSPACE):
-            quit_game()
+            switch_to_screen(title_screen_file)
 
-func quit_game() -> void:
-    var title_screen_scene = load(title_screen_file)
-    get_tree().root.add_child(title_screen_scene.instantiate())
+func switch_to_screen(screen_file: String) -> void:
+    var screen_scene: PackedScene = load(screen_file)
+    var screen = screen_scene.instantiate()
+    get_tree().root.add_child(screen)
     get_tree().root.remove_child(self)
+
+func is_game_over() -> bool:
+    var altar_count = 0
+    var necromancer_count = 0
+
+    for node in get_children():
+        if node is Altar:
+            altar_count += 1
+
+        if node is Necromancer:
+            necromancer_count += 1
+
+    return altar_count == 0 or necromancer_count == 0

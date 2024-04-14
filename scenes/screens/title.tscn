@@ -1,8 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://duxdfk6dx17fa"]
 
 [ext_resource type="Script" path="res://scripts/title_screen.gd" id="1_6y5vr"]
-[ext_resource type="Texture2D" uid="uid://nbhc3dbsoinc" path="res://images/title_250x150.png" id="2_i2n1o"]
 [ext_resource type="FontFile" uid="uid://dku2q1c7ukgwy" path="res://fonts/vergilia/vergilia.otf" id="3_25vqr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_uxx07"]
+font = ExtResource("3_25vqr")
+font_size = 96
 
 [sub_resource type="LabelSettings" id="LabelSettings_vl0u3"]
 font = ExtResource("3_25vqr")
@@ -11,16 +14,21 @@ font_size = 32
 [node name="Title" type="Node2D"]
 script = ExtResource("1_6y5vr")
 
-[node name="Title250x150" type="Sprite2D" parent="."]
-texture_filter = 3
-position = Vector2(597, 266)
-texture = ExtResource("2_i2n1o")
+[node name="UnholySanctum" type="Label" parent="."]
+offset_left = 180.0
+offset_top = 243.0
+offset_right = 1004.0
+offset_bottom = 371.0
+text = "Unholy Sanctum"
+label_settings = SubResource("LabelSettings_uxx07")
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Label" type="Label" parent="."]
-offset_left = 381.0
-offset_top = 474.0
-offset_right = 825.0
-offset_bottom = 506.0
+[node name="PressEnterToPlay" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 472.0
+offset_right = 799.0
+offset_bottom = 504.0
 text = "Press Enter to play, or Escape to exit"
 label_settings = SubResource("LabelSettings_vl0u3")
 horizontal_alignment = 1

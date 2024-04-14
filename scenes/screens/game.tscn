@@ -1,14 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=9 format=3 uid="uid://dv6v6kt221hpn"]
 
 [ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_7nlgk"]
 [ext_resource type="PackedScene" uid="uid://noltwi3xdib7" path="res://scenes/altar.tscn" id="1_kvott"]
 [ext_resource type="PackedScene" uid="uid://bnpf13fmlyanh" path="res://scenes/necromancer.tscn" id="2_h5yb6"]
+[ext_resource type="Texture2D" uid="uid://c8wp1s7mm2v3t" path="res://images/ground.png" id="2_nlmwd"]
 [ext_resource type="PackedScene" uid="uid://rwaionureu0f" path="res://scenes/peasant.tscn" id="3_pg21i"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_xucsd"]
 [ext_resource type="PackedScene" uid="uid://bvy0odgmxtttf" path="res://scenes/blob.tscn" id="5_c0ct8"]
+[ext_resource type="AudioStream" uid="uid://b2qwih8i5w02o" path="res://sounds/gameover.ogg" id="8_jhiji"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7nlgk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -4096
+offset_left = -1861.0
+offset_top = -1331.0
+offset_right = 1689.0
+offset_bottom = 1441.0
+texture = ExtResource("2_nlmwd")
+stretch_mode = 1
 
 [node name="Altar" parent="." instance=ExtResource("1_kvott")]
 
@@ -49,3 +60,6 @@ position = Vector2(65, 170)
 
 [node name="Blob6" parent="." instance=ExtResource("5_c0ct8")]
 position = Vector2(103, -100)
+
+[node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_jhiji")

@@ -14,15 +14,17 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
     press_any_key_label.visible = is_delay_done()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventMouseButton:
         if event.pressed:
             if is_delay_done():
+                get_viewport().set_input_as_handled()
                 switch_to_screen(title_screen_file)
 
     if event is InputEventKey:
         if event.pressed:
             if is_delay_done():
+                get_viewport().set_input_as_handled()
                 switch_to_screen(title_screen_file)
 
 func is_delay_done() -> bool:

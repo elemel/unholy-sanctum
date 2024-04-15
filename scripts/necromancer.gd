@@ -9,8 +9,8 @@ class_name Necromancer
 @export var max_health = 100.0
 @export var current_health = 100.0
 @export var blob_scene: PackedScene
-@export var summon_blob_cost = 30.0
-@export var summon_demon_cost = 120.0
+@export var summon_blob_cost = 10.0
+@export var summon_demon_cost = 100.0
 @export var attack_range = 100.0
 @export var selected_spell = "summon_blob"
 

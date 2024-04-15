@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=17 format=3 uid="uid://dv6v6kt221hpn"]
 
 [ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_7nlgk"]
 [ext_resource type="PackedScene" uid="uid://noltwi3xdib7" path="res://scenes/altar.tscn" id="1_kvott"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scripts/spell_panel.gd" id="11_i1krh"]
 [ext_resource type="Texture2D" uid="uid://c7noguhcsp8c4" path="res://images/demon.png" id="11_ol1b6"]
 [ext_resource type="StyleBox" uid="uid://c6nxoyur5n500" path="res://styles/unselected.tres" id="12_bvms3"]
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="16_jstgu"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7nlgk")
@@ -42,19 +43,6 @@ stretch_mode = 1
 
 [node name="Necromancer" parent="." instance=ExtResource("2_h5yb6")]
 position = Vector2(-110, 119)
-
-[node name="Peasant" parent="." instance=ExtResource("3_pg21i")]
-position = Vector2(-340, -90)
-velocity = Vector2(2.08165e-12, 2.08165e-12)
-
-[node name="Peasant2" parent="." instance=ExtResource("3_pg21i")]
-position = Vector2(286, -144)
-
-[node name="Peasant3" parent="." instance=ExtResource("3_pg21i")]
-position = Vector2(-485, 263)
-
-[node name="Peasant4" parent="." instance=ExtResource("3_pg21i")]
-position = Vector2(277, 276)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-110, 119)
@@ -196,3 +184,21 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("11_ol1b6")
+
+[node name="PeasantSpawner" type="Node2D" parent="."]
+script = ExtResource("16_jstgu")
+unit_scene = ExtResource("3_pg21i")
+min_distance = 500.0
+max_distance = 1000.0
+
+[node name="PeasantSpawner2" type="Node2D" parent="."]
+script = ExtResource("16_jstgu")
+unit_scene = ExtResource("3_pg21i")
+min_distance = 500.0
+max_distance = 1000.0
+
+[node name="PeasantSpawner3" type="Node2D" parent="."]
+script = ExtResource("16_jstgu")
+unit_scene = ExtResource("3_pg21i")
+min_distance = 500.0
+max_distance = 1000.0

@@ -23,9 +23,10 @@ func _physics_process(_delta: float) -> void:
             game_over_time = now
             game_over_stream_player.play()
 
-func _input(event: InputEvent) -> void:
+func _unhandled_key_input(event: InputEvent) -> void:
     if event is InputEventKey:
         if event.pressed and (event.keycode == KEY_ESCAPE or event.keycode == KEY_BACKSPACE):
+            get_viewport().set_input_as_handled()
             switch_to_screen(title_screen_file)
 
 func switch_to_screen(screen_file: String) -> void:

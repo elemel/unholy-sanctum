@@ -1,22 +1,21 @@
 extends CharacterBody2D
-class_name Peasant
+class_name Demon
 
 @export var acceleration = 100.0
 @export var speed = 50.0
-@export var fire_range = 100.0
-@export var torch_scene: PackedScene
-@export var reload_duration = 1.0
-@export var unit_radius = 10.0
-@export var max_health = 50.0
-@export var current_health = 50.0
+@export var attack_range = 30.0
+@export var attack_cooldown = 2.0
+@export var unit_radius = 15.0
+@export var max_health = 100.0
+@export var current_health = 100.0
+@export var min_damage = 20.0
+@export var max_damage = 50.0
 
-var fire_time = 0.0
+var attack_time = 0.0
 var face_direction = 1
 
-@onready var sprite: Sprite2D = get_node("Sprite2D")
-@onready var shadow_sprite: Sprite2D = get_node("Shadow/Sprite2D")
-@onready var attack_sound: AudioStreamPlayer2D = get_node("AttackSound")
-@onready var hurt_sound: AudioStreamPlayer2D = get_node("HurtSound")
+@onready var sprite = $"Sprite2D"
+@onready var shadow_sprite = $"Shadow/Sprite2D"
 
 func _physics_process(delta: float) -> void:
     if current_health < 0.0:
@@ -30,21 +29,17 @@ func _physics_process(delta: float) -> void:
         var target_distance = position.distance_to(target.position) - unit_radius - target.unit_radius
         var target_direction = (target.position - position).normalized()
 
-        if target_distance > fire_range:
+        if target_distance > attack_range:
             move_direction = target_direction
         else:
             var now = 0.001 * Time.get_ticks_msec()
 
-            if torch_scene != null and now > fire_time + reload_duration:
-                attack_sound.play()
-                fire_time = now
+            if now > attack_time + attack_cooldown:
+                attack_time = now
 
-                var torch: Torch = torch_scene.instantiate()
-                torch.position = position
-                torch.velocity = torch.speed * target_direction
-                torch.thrower = self
-
-                get_parent().add_child(torch)
+                if target.has_method("receive_damage"):
+                    var damage = randf_range(min_damage, max_damage)
+                    target.receive_damage(damage)
 
         if target_direction.x < 0.0:
             face_direction = -1
@@ -55,8 +50,20 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 func _process(_delta: float) -> void:
-    sprite.scale.x = float(face_direction)
-    shadow_sprite.scale.x = float(face_direction)
+    var now = 0.001 * Time.get_ticks_msec()
+    var animated_scale = Vector2.ONE
+    var animated_rotation = 0.0
+
+    var duration_since_attack = now - attack_time
+    animated_rotation += face_direction * 0.25 * PI * smoothstep(0.125, 0.0, abs(0.125 - duration_since_attack))
+
+    animated_scale.x *= float(face_direction)
+
+    sprite.scale = animated_scale
+    sprite.rotation = animated_rotation
+
+    shadow_sprite.scale = animated_scale
+    shadow_sprite.rotation = animated_rotation
 
     z_index = int(position.y)
 
@@ -65,7 +72,7 @@ func find_target() -> Node2D:
     var min_distance = INF
 
     for node in get_parent().get_children():
-        if node is Altar or node is Necromancer or node is Blob or node is Demon:
+        if node is Peasant:
             var distance = position.distance_to(node.position) - unit_radius - node.unit_radius
 
             if distance < min_distance:
@@ -75,5 +82,4 @@ func find_target() -> Node2D:
     return target
 
 func receive_damage(damage: float) -> void:
-    hurt_sound.play()
     current_health -= damage

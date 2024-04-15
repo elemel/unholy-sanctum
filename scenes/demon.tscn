@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=3 uid="uid://c33vq1xfhk8r8"]
+
+[ext_resource type="Script" path="res://scripts/demon.gd" id="1_i8pre"]
+[ext_resource type="Texture2D" uid="uid://c7noguhcsp8c4" path="res://images/demon.png" id="2_2anol"]
+[ext_resource type="PackedScene" uid="uid://dhes5vods88b6" path="res://scenes/health_bar.tscn" id="3_h4r4u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l0ubf"]
+radius = 5.0
+
+[node name="Demon" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_i8pre")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_l0ubf")
+
+[node name="Shadow" type="Node2D" parent="."]
+modulate = Color(0, 0, 0, 0.498039)
+scale = Vector2(1, 0.75)
+skew = 1.0472
+
+[node name="Sprite2D" type="Sprite2D" parent="Shadow"]
+texture_filter = 3
+position = Vector2(0, -17)
+texture = ExtResource("2_2anol")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 3
+position = Vector2(0, -17)
+texture = ExtResource("2_2anol")
+
+[node name="HealthBar" parent="." instance=ExtResource("3_h4r4u")]
+position = Vector2(0, 10)
+
+[node name="Background" parent="HealthBar" index="0"]
+offset_left = -15.0
+offset_right = 15.0
+
+[node name="Foreground" parent="HealthBar/Background" index="0"]
+offset_left = -15.0
+offset_right = 15.0
+
+[editable path="HealthBar"]

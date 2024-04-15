@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnpf13fmlyanh"]
+[gd_scene load_steps=7 format=3 uid="uid://bnpf13fmlyanh"]
 
 [ext_resource type="Script" path="res://scripts/necromancer.gd" id="1_4h2x4"]
 [ext_resource type="PackedScene" uid="uid://bvy0odgmxtttf" path="res://scenes/blob.tscn" id="2_2f1vt"]
 [ext_resource type="Texture2D" uid="uid://bsne7v43oi724" path="res://images/necromancer.png" id="2_3rbu3"]
+[ext_resource type="PackedScene" uid="uid://c33vq1xfhk8r8" path="res://scenes/demon.tscn" id="3_76qnx"]
 [ext_resource type="PackedScene" uid="uid://dhes5vods88b6" path="res://scenes/health_bar.tscn" id="3_f152s"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7jfu7"]
@@ -14,6 +15,7 @@ script = ExtResource("1_4h2x4")
 acceleration = 100.0
 speed = 50.0
 blob_scene = ExtResource("2_2f1vt")
+demon_scene = ExtResource("3_76qnx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

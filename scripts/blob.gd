@@ -1,8 +1,8 @@
 extends CharacterBody2D
 class_name Blob
 
-@export var acceleration = 100.0
-@export var speed = 50.0
+@export var acceleration = 50.0
+@export var speed = 30.0
 @export var attack_range = 20.0
 @export var attack_cooldown = 1.0
 @export var unit_radius = 15.0

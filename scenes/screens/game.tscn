@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=21 format=3 uid="uid://dv6v6kt221hpn"]
 
 [ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_7nlgk"]
 [ext_resource type="PackedScene" uid="uid://noltwi3xdib7" path="res://scenes/altar.tscn" id="1_kvott"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://c7noguhcsp8c4" path="res://images/demon.png" id="11_ol1b6"]
 [ext_resource type="StyleBox" uid="uid://c6nxoyur5n500" path="res://styles/unselected.tres" id="12_bvms3"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="16_jstgu"]
+[ext_resource type="PackedScene" uid="uid://bqfqdig4p6pri" path="res://scenes/rock.tscn" id="19_ar2a0"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_fh3ip"]
 font = ExtResource("10_auq5y")
@@ -183,6 +184,9 @@ position = Vector2(818, 327)
 [node name="Bush8" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(116, -294)
 
+[node name="Bush19" parent="." instance=ExtResource("10_1wye8")]
+position = Vector2(179, -359)
+
 [node name="Bush9" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(377, -289)
 
@@ -192,11 +196,20 @@ position = Vector2(-911, 126)
 [node name="Bush11" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(-302, 132)
 
+[node name="Bush16" parent="." instance=ExtResource("10_1wye8")]
+position = Vector2(-271, 116)
+
 [node name="Bush12" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(-780, 274)
 
 [node name="Bush13" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(999, 389)
+
+[node name="Bush17" parent="." instance=ExtResource("10_1wye8")]
+position = Vector2(955, 386)
+
+[node name="Bush18" parent="." instance=ExtResource("10_1wye8")]
+position = Vector2(1026, 409)
 
 [node name="Bush14" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(362, -503)
@@ -221,3 +234,21 @@ script = ExtResource("16_jstgu")
 unit_scene = ExtResource("3_pg21i")
 min_distance = 500.0
 max_distance = 1000.0
+
+[node name="Rock" parent="." instance=ExtResource("19_ar2a0")]
+position = Vector2(-404, -59)
+
+[node name="Rock2" parent="." instance=ExtResource("19_ar2a0")]
+position = Vector2(-378, 42)
+
+[node name="Rock3" parent="." instance=ExtResource("19_ar2a0")]
+position = Vector2(146, -494)
+
+[node name="Rock4" parent="." instance=ExtResource("19_ar2a0")]
+position = Vector2(685, -29)
+
+[node name="Rock5" parent="." instance=ExtResource("19_ar2a0")]
+position = Vector2(879, 67)
+
+[node name="Rock6" parent="." instance=ExtResource("19_ar2a0")]
+position = Vector2(921, 7)

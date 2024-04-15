@@ -40,6 +40,13 @@ func _unhandled_key_input(event: InputEvent) -> void:
             if necromancer:
                 necromancer.selected_spell = "summon_demon"
 
+        if event.pressed and event.keycode == KEY_TAB:
+            if necromancer:
+                if necromancer.selected_spell == "summon_blob":
+                    necromancer.selected_spell = "summon_demon"
+                elif necromancer.selected_spell == "summon_demon":
+                    necromancer.selected_spell = "summon_blob"
+
 func find_necromancer() -> Necromancer:
     for node in game.get_children():
         if node is Necromancer:

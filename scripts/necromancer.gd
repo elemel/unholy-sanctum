@@ -10,9 +10,10 @@ class_name Necromancer
 @export var current_health = 100.0
 @export var blob_scene: PackedScene
 @export var summon_blob_cost = 10.0
-@export var summon_demon_cost = 100.0
+@export var summon_demon_cost = 30.0
 @export var attack_range = 100.0
 @export var selected_spell = "summon_blob"
+@export var demon_scene: PackedScene
 
 @onready var sprite = $"Sprite2D"
 @onready var shadow_sprite = $"Shadow/Sprite2D"
@@ -50,14 +51,18 @@ func _unhandled_input(event: InputEvent) -> void:
             if attack_distance > attack_range:
                 attack_position = position + (attack_position - position).normalized() * attack_range
 
-            if selected_spell == "summon_blob":
+            if selected_spell == "summon_blob" and current_health > summon_blob_cost:
                 var blob = blob_scene.instantiate()
                 blob.position = attack_position
                 game.add_child(blob)
 
                 current_health -= summon_blob_cost
 
-            if selected_spell == "summon_demon":
+            if selected_spell == "summon_demon" and current_health > summon_demon_cost:
+                var demon = demon_scene.instantiate()
+                demon.position = attack_position
+                game.add_child(demon)
+
                 current_health -= summon_demon_cost
 
 func receive_damage(damage: float) -> void:

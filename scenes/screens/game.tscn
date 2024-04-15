@@ -1,15 +1,17 @@
-[gd_scene load_steps=17 format=3 uid="uid://dv6v6kt221hpn"]
+[gd_scene load_steps=20 format=3 uid="uid://dv6v6kt221hpn"]
 
 [ext_resource type="Script" path="res://scripts/game_screen.gd" id="1_7nlgk"]
 [ext_resource type="PackedScene" uid="uid://noltwi3xdib7" path="res://scenes/altar.tscn" id="1_kvott"]
 [ext_resource type="PackedScene" uid="uid://bnpf13fmlyanh" path="res://scenes/necromancer.tscn" id="2_h5yb6"]
 [ext_resource type="Texture2D" uid="uid://c8wp1s7mm2v3t" path="res://images/ground.png" id="2_nlmwd"]
+[ext_resource type="Script" path="res://scripts/timer_label.gd" id="3_asf1w"]
 [ext_resource type="PackedScene" uid="uid://rwaionureu0f" path="res://scenes/peasant.tscn" id="3_pg21i"]
 [ext_resource type="Script" path="res://scripts/camera.gd" id="4_xucsd"]
-[ext_resource type="AudioStream" uid="uid://b2qwih8i5w02o" path="res://sounds/gameover.ogg" id="8_jhiji"]
+[ext_resource type="AudioStream" uid="uid://p6g1mttmp7ss" path="res://sounds/necro_dead.ogg" id="8_0je21"]
 [ext_resource type="PackedScene" uid="uid://crs0xhy6chxum" path="res://scenes/tree.tscn" id="9_s4lwr"]
 [ext_resource type="PackedScene" uid="uid://tstbc8da7ow3" path="res://scenes/bush.tscn" id="10_1wye8"]
 [ext_resource type="Texture2D" uid="uid://ctsp2hewvr5gs" path="res://images/blob.png" id="10_5hkdd"]
+[ext_resource type="FontFile" uid="uid://dku2q1c7ukgwy" path="res://fonts/vergilia/vergilia.otf" id="10_auq5y"]
 [ext_resource type="Script" path="res://scripts/spellbook_panel.gd" id="10_j20bm"]
 [ext_resource type="StyleBox" uid="uid://yjlpsdnkq8t0" path="res://styles/selected.tres" id="10_mb1kl"]
 [ext_resource type="Script" path="res://scripts/spell_panel.gd" id="11_i1krh"]
@@ -17,11 +19,87 @@
 [ext_resource type="StyleBox" uid="uid://c6nxoyur5n500" path="res://styles/unselected.tres" id="12_bvms3"]
 [ext_resource type="Script" path="res://scripts/spawner.gd" id="16_jstgu"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_fh3ip"]
+font = ExtResource("10_auq5y")
+font_size = 48
+
 [node name="Game" type="Node2D"]
 script = ExtResource("1_7nlgk")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Top" type="CenterContainer" parent="CanvasLayer"]
+offset_top = 8.0
+offset_right = 1152.0
+offset_bottom = 72.0
+
+[node name="Timer" type="Label" parent="CanvasLayer/Top"]
+custom_minimum_size = Vector2(2.08165e-12, 64)
+layout_mode = 2
+label_settings = SubResource("LabelSettings_fh3ip")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_asf1w")
+
+[node name="Bottom" type="CenterContainer" parent="CanvasLayer"]
+offset_top = 576.0
+offset_right = 1152.0
+offset_bottom = 640.0
+
+[node name="Spellbook" type="HBoxContainer" parent="CanvasLayer/Bottom"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("10_j20bm")
+selected_style = ExtResource("10_mb1kl")
+unselected_style = ExtResource("12_bvms3")
+
+[node name="SummonBlob" type="Panel" parent="CanvasLayer/Bottom/Spellbook"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_default_cursor_shape = 2
+theme_override_styles/panel = ExtResource("10_mb1kl")
+script = ExtResource("11_i1krh")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Spellbook/SummonBlob"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_5hkdd")
+
+[node name="SummonDemon" type="Panel" parent="CanvasLayer/Bottom/Spellbook"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("12_bvms3")
+script = ExtResource("11_i1krh")
+spell = "summon_demon"
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Bottom/Spellbook/SummonDemon"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -8.0
+offset_right = 16.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_ol1b6")
+
 [node name="GameOverStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("8_jhiji")
+stream = ExtResource("8_0je21")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 z_index = -4096
@@ -125,65 +203,6 @@ position = Vector2(362, -503)
 
 [node name="Bush15" parent="." instance=ExtResource("10_1wye8")]
 position = Vector2(656, -159)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
-offset_top = 576.0
-offset_right = 1152.0
-offset_bottom = 640.0
-
-[node name="Spellbook" type="HBoxContainer" parent="CanvasLayer/CenterContainer"]
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 1
-script = ExtResource("10_j20bm")
-selected_style = ExtResource("10_mb1kl")
-unselected_style = ExtResource("12_bvms3")
-
-[node name="SummonBlob" type="Panel" parent="CanvasLayer/CenterContainer/Spellbook"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-mouse_default_cursor_shape = 2
-theme_override_styles/panel = ExtResource("10_mb1kl")
-script = ExtResource("11_i1krh")
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/Spellbook/SummonBlob"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -8.0
-offset_right = 16.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("10_5hkdd")
-
-[node name="SummonDemon" type="Panel" parent="CanvasLayer/CenterContainer/Spellbook"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_styles/panel = ExtResource("12_bvms3")
-script = ExtResource("11_i1krh")
-spell = "summon_demon"
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CenterContainer/Spellbook/SummonDemon"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -16.0
-offset_top = -8.0
-offset_right = 16.0
-offset_bottom = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("11_ol1b6")
 
 [node name="PeasantSpawner" type="Node2D" parent="."]
 script = ExtResource("16_jstgu")

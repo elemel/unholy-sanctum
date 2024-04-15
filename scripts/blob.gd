@@ -50,8 +50,16 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 func _process(_delta: float) -> void:
-    sprite.scale.x = float(face_direction)
-    shadow_sprite.scale.x = float(face_direction)
+    var now = 0.001 * Time.get_ticks_msec()
+    var animated_scale = Vector2.ONE
+
+    var duration_since_attack = now - attack_time
+    animated_scale *= 1.0 + smoothstep(0.25, 0.0, abs(0.25 - duration_since_attack))
+
+    animated_scale.x *= float(face_direction)
+
+    sprite.scale = animated_scale
+    shadow_sprite.scale = animated_scale
 
     z_index = int(position.y)
 
